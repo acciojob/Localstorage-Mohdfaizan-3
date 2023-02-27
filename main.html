@@ -20,16 +20,50 @@
       <li>Loading Storage...</li>
     </ul>
     <form class="add-items">
-      <input type="text" name="item" placeholder="Item Name" required>
+      <input id="item" type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
   </div>
 
 <script>
-  const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.plates');
-  const items = [];
+ const addItems = document.querySelector(".add-items");
+const itemsList = document.querySelector(".plates");
+let items = JSON.parse(localStorage.getItem("todo-item")) || [];
 
+function addItem(item, index) {
+  const li = `<li>
+  <input type="checkbox" data-index=${index} id="item${index}" ${
+    item.done ? "checked" : ""
+  } />
+  <label for="item${index}">${item.name}</label>
+</li>`;
+  itemsList.innerHTML += li;
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  const item = document.querySelector("#item").value;
+
+  items.push({ name: item, done: false });
+
+  localStorage.setItem("todo-item", JSON.stringify(items));
+  addItem(items[items.length - 1], items.length - 1);
+  document.querySelector("#item").value = "";
+}
+
+items.forEach((item, index) => {
+  addItem(item, index);
+});
+
+addItems.addEventListener("submit", handleSubmit);
+
+itemsList.addEventListener("click", function(event) {
+  if (!event.target.matches("input[type='checkbox']")) return;
+  const index = event.target.dataset.index;
+  items[index].done = !items[index].done;
+  localStorage.setItem("todo-item", JSON.stringify(items));
+});
+	
 </script>
 
 
