@@ -68,7 +68,7 @@ itemsList.addEventListener("click", function(event) {
   const index = event.target.dataset.index;
   items[index].done = !items[index].done;
   localStorage.setItem("todo-item", JSON.stringify(items));
-  //event.target.setAttribute("checked", items[index].done ? "checked" : "");
+  event.target.setAttribute("checked", items[index].done ? "checked" : "");
 });
 	
 </script>
