@@ -32,13 +32,13 @@ let items = JSON.parse(localStorage.getItem("todo-item")) || [];
 
 function addItem(item, index) {
   const li = `<li>
-    <input type="checkbox" data-index="${index}" id="item${index}" ${item.done ? 'checked' : ''}>
-    <label for="item${index}">${item.name}</label>
-  </li>`;
+  <input type="checkbox" data-index=${index} id="item${index}" ${
+    item.done ? "checked" : ""
+  } />
+  <label for="item${index}">${item.name}</label>
+</li>`;
   itemsList.innerHTML += li;
 }
-
-
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -63,14 +63,6 @@ itemsList.addEventListener("click", function(event) {
   items[index].done = !items[index].done;
   localStorage.setItem("todo-item", JSON.stringify(items));
 });
-
-
-
-function handleSubmit(event) {
-  event.preventDefault();
-  const item = document.querySelector("#item").value;
-					   }
-
 	
 </script>
 
