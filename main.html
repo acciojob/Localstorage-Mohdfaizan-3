@@ -63,7 +63,8 @@ items.forEach((item, index) => {
 addItems.addEventListener("submit", handleSubmit);
 
 itemsList.addEventListener("click", function(event) {
-  //if (!event.target.matches("input[type='checkbox']")) return;
+  if (!event.target.matches("input[type='checkbox']")) return;
+	// necssary if other type of input is present in li
   const index = event.target.dataset.index;
   items[index].done = !items[index].done;
   localStorage.setItem("todo-item", JSON.stringify(items));
