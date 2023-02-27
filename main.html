@@ -32,11 +32,9 @@ let items = JSON.parse(localStorage.getItem("todo-item")) || [];
 
 function addItem(item, index) {
   const li = `<li>
-  <input type="checkbox" data-index=${index} id="item${index}" ${
-    item.done ? "checked" : ""
-  } />
-  <label for="item${index}">${item.name}</label>
-</li>`;
+    <input type="checkbox" data-index="${index}" id="item${index}" ${item.done ? 'checked' : ''}>
+    <label for="item${index}">${item.name}</label>
+  </li>`;
   itemsList.innerHTML += li;
 }
 
